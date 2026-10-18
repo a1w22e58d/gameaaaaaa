@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>绿野防线 · 第一关</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ============ 封面页：进游戏看到的第一屏 ============ -->
+  <div id="coverScreen" class="cover-screen">
+    <div class="cover-inner">
+      <div class="cover-art">
+        <img src="主角/hero-deepseek-big.png" alt="主角" draggable="false" />
+        <span class="cover-art-glow"></span>
+      </div>
+      <div class="cover-text">
+        <p class="cover-kicker">🌻 网页塔防 · 零依赖 · 打开就能玩</p>
+        <h1 class="cover-title">绿野防线</h1>
+        <p class="cover-sub">三关 · 前两关 15 波 · 第三关 20 波 · 地狱难度</p>
+        <ul class="cover-points">
+          <li><b>造塔、升级、拆塔</b>都得主角亲自跑到现场</li>
+          <li>鼠标左键让主角补刀，<kbd>X</kbd> 炸弹救急，<kbd>空格</kbd> 暂停</li>
+          <li>首领每 6 秒放一次<b>沉默波</b>：身边的塔哑火 3 秒还掉耐久</li>
+          <li>第三关的<b>蹦极</b>会把塔偷走，用<b>☂️ 保护伞</b>罩住它</li>
+        </ul>
+        <button id="btnCover" class="btn primary cover-btn">▶ 开始游戏</button>
+        <p class="cover-hint">点「开始游戏」进入新手教学与选关</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 开始页面 / 新手教程 ============ -->
+  <div id="startScreen" class="start-screen">
+    <div class="start-card">
+      <div class="start-head">
+        <span class="start-logo">🌻</span>
+        <div>
+          <h1>绿野防线</h1>
+          <p>三关可选 · 新手教学</p>
+        </div>
+      </div>
+
+      <p class="start-goal">
+        敌人会沿小路冲向右侧基地，<b>漏过就扣基地生命</b>；<b>基地生命或主角血量任意一个归零都算失败</b>。
+        前两关守住 <b>15 波</b>、<b>第三关守住 20 波</b>（都含首领）就通关。<br>
+        <b>第一关</b>三条路，通关后掉落新道具 <b>🪝 钩索</b> 并解锁 <b>第二关</b>——第二关两条路统一出怪，
+        要靠钩索把防御塔在两条路之间搬。<br>
+        通关第二关解锁 <b>第三关 · 浮桥水镇</b>：中间横着一条河，只有两格桥能过；
+        那关的 <b>蹦极</b> 会往你的塔上贴靶子、5 秒后吊下来把整座塔偷走，得靠 <b>☂️ 保护伞</b> 把它弹飞。
+      </p>
+
+      <div class="start-cols">
+        <section class="start-col">
+          <h3>操作一览</h3>
+          <ul class="key-list">
+            <li><span class="keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><i>移动主角（也可用方向键）</i></li>
+            <li><span class="keys"><kbd>Z</kbd></span><i>标记脚下的空地／选中脚下的防御塔</i></li>
+            <li><span class="keys"><kbd>B</kbd></span><i>在标记的空地上建塔（鼠标三选一）</i></li>
+            <li><span class="keys"><kbd>F</kbd></span><i>升级选中的防御塔</i></li>
+            <li><span class="keys"><kbd>C</kbd></span><i>拆除选中的防御塔</i></li>
+            <li><span class="keys"><kbd>X</kbd></span><i>引爆炸弹：秒杀身边血量最高的 5 个敌人（冷却 20 秒）</i></li>
+            <li><span class="keys"><kbd>左Shift</kbd></span><i>甩钩索（第二关）：位移／搬运防御塔（钩索碰到敌人不掉血）</i></li>
+            <li><span class="keys"><kbd>左键</kbd></span><i>点身边的塔＝选中；点空处＝主角射箭（可按住连发）</i></li>
+            <li><span class="keys"><kbd>右键</kbd></span><i>快速拆除身边的防御塔</i></li>
+            <li><span class="keys"><kbd>空格</kbd></span><i>暂停／继续</i></li>
+          </ul>
+        </section>
+
+        <section class="start-col">
+          <h3>三分钟上手</h3>
+          <ol class="step-list">
+            <li><b>先建塔</b>：走到空地上按 <kbd>Z</kbd> 标记，再按 <kbd>B</kbd>，鼠标从三种塔里挑一个。</li>
+            <li><b>塔会自动开火</b>，不用你管；鼠标左键让主角补刀漏网的敌人。</li>
+            <li><b>变强</b>：走到塔旁边按 <kbd>Z</kbd>（或直接用左键点它）选中，再按 <kbd>F</kbd> 升级。</li>
+            <li><b>主角会升级</b>：击杀敌人攒经验，升级时用鼠标从三个强化里选一个。</li>
+            <li><b>保命</b>：看到<span class="warn-txt">橙色落石预警圈</span>就走开，别站在<span class="warn-txt">红色杀戮光环</span>里。</li>
+            <li><b>炸弹</b>：危急时按 <kbd>X</kbd>，以主角为中心秒杀范围内最肉的 5 个敌人（含首领），<b>引爆后要等 20 秒冷却</b>，用完可以在右侧花 150 金币再买。</li>
+            <li><b>小心这些怪</b>：<span class="warn-txt">拆塔者</span>边走边拆你的塔，<span class="warn-txt">督军</span>会把怪往前推，<span class="warn-txt">诱饵</span>会从任意方向冒出来。</li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="start-foot">
+        <span id="startTip">提示：第一关有 <b>三条路</b>——第 4 波开右上方的侧路、第 6 波开左下方的地道，记得提前分兵。</span>
+        <div class="level-pick">
+          <button id="btnLevel1" class="btn primary start-btn">▶ 第一关 · 蜿蜒小径</button>
+          <button id="btnLevel2" class="btn start-btn locked">🔒 第二关 · 双子回廊</button>
+          <button id="btnLevel3" class="btn start-btn locked">🔒 第三关 · 浮桥水镇</button>
+        </div>
+      </div>
+      <p class="start-unlock" id="startUnlock">通关第一关会掉落新道具 <b>🪝 钩索</b>，并解锁第二关；通关第二关解锁 <b>第三关</b>。</p>
+      <p class="start-unlock">🔥 <b>地狱难度</b>：基地生命只有 <b>5 点</b> · 开局金币 <b>×0.7</b> · 敌人血量 <b>第一关 ×1.2 / 第二关 ×1.875 / 第三关 ×2.4</b> · 拆塔者破坏力 <b>×1.3</b> · 每波准备时间 <b>10 秒</b> · 升级台第二关起才有。</p>
+    </div>
+  </div>
+
+  <!-- ============ 第二关开场的道具使用说明 ============ -->
+  <div id="itemGuide" class="start-screen hidden">
+    <div class="start-card guide-card">
+      <div class="start-head">
+        <span class="start-logo">🪝</span>
+        <div>
+          <h1>新道具：钩索</h1>
+          <p>第二关 · 双子回廊 · 道具使用说明</p>
+        </div>
+      </div>
+
+      <p class="start-goal">
+        <b>左 Shift</b> 是钩索的开关。钩索永远朝<b>鼠标方向</b>甩出去（主角身体朝向由 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 决定），
+        <b>长度固定 196 像素</b>。它按当时的状况自动切换用途：
+      </p>
+
+      <div class="guide-rows">
+        <div class="guide-row">
+          <span class="guide-ico">💨</span>
+          <div>
+            <b>① 快速位移（还能撞开挡路的怪）</b>
+            <p>钩索没搭到东西时，按 <kbd>左 Shift</kbd> 会把你朝<b>鼠标方向</b>拽出去——<b>距离是固定 196 像素</b>
+              （和链爪一样长，鼠标点多远都一样），再以 1180 像素/秒匀速飞到落点。
+              <b>位移期间方向键失效</b>——整段位移只听钩索的，不会被 WASD 带偏。
+              冲过去的那一段里<b>碰到谁就把谁撞回去</b>（44 + 体型 像素，比平时撞怪更狠），而且<b>位移途中你不会挨撞掉血</b>，
+              所以它也是「挤开挡路怪」的手段。冷却 1.5 秒。</p>
+          </div>
+        </div>
+        <div class="guide-row">
+          <span class="guide-ico">🧭</span>
+          <div>
+            <b>② 链爪只是指示线</b>
+            <p>链爪<b>不造成任何伤害</b>，也<b>不会推开敌人</b>——它只负责指方向，以及勾住/端起自己人。
+              想撞开挡路的怪，靠的是上面那一下<b>位移</b>：<b>冲出去的主角会撞开碰到的敌人</b>
+              （不掉血、你也不会挨撞）。想清怪，还是得靠防御塔和弓箭。</p>
+          </div>
+        </div>
+        <div class="guide-row">
+          <span class="guide-ico">🏗️</span>
+          <div>
+            <b>③ 搬运防御塔 / 升级台</b>
+            <p>钩索搭到<b>自己的防御塔</b>时，按 <kbd>左 Shift</kbd> 会把它<b>端在手上</b>；端着塔走到<b>另一块空地</b>，再按一次 <kbd>左 Shift</kbd> 就能放下——<b>不花一分钱，等级和耐久全部保留</b>。脚下格子会实时显示能不能放。<br>
+              搭到<b>⬆️ 升级台</b>（第二关每波清完在金色虚框处刷一个）时，端着它走到<b>自己的塔旁边</b>再按一次 <kbd>左 Shift</kbd>，那座塔<b>免费升一级</b>，而且能<b>突破 3 级上限</b>、一路顶到 <b>LV5</b>。</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="start-goal guide-warn">
+        <b>为什么第二关特别需要它？</b>这一关是<b>两条路统一出怪</b>——每一批怪都对半轮流走两条路，
+        两边的压力永远一样大；而且这里的<b>拆塔者破坏力是第一关的 1.8 倍</b>，塔会被成片拆掉，
+        所以塔的等级比数量更重要。
+        这一关还多了一件固定设施：<b>⬆️ 升级台</b>——<b>每波清完后</b>会在金色虚框的交付点刷一个，
+        <b>用钩索端起它、走到自己的塔旁边再按一次左 Shift</b>，就能<b>免费把那座塔升一级</b>，
+        而且能<b>突破 3 级上限</b>一路升到 <b>LV5</b>。端着台子的格子会实时高亮：
+        <span class="ok-txt">绿色＝能放</span>，<span class="bad-txt">红色＝不能放</span>。
+      </p>
+
+      <p class="start-goal">
+        🌊 场地中间还有一条<b>河</b>：主角走不过去（会停在岸边），只能从<b>两座桥</b>过；
+        <b>钩索却可以直接把你拉过河</b>。敌人本来就沿着路走，自然走桥。
+      </p>
+
+      <div class="start-foot">
+        <span>随时可以按 <kbd>?</kbd> 或用右侧面板的「操作说明」再回来看。</span>
+        <button id="btnGuideOk" class="btn primary start-btn">▶ 开始第二关</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 第三关开场的机制说明（蹦极 / 保护伞 / 升级台）============ -->
+  <div id="itemGuide3" class="start-screen hidden">
+    <div class="start-card guide-card">
+      <div class="start-head">
+        <span class="start-logo">🪤</span>
+        <div>
+          <h1>新敌人：蹦极</h1>
+          <p>第三关 · 浮桥水镇 · 机制说明</p>
+        </div>
+      </div>
+
+      <p class="start-goal">
+        这一关的地图是<b>红色主路 + 绿色侧路 + 蓝色河道</b>：敌人沿路来，主角过河只能走<b>桥</b>，
+        <b>钩索可以直接飞过去</b>。真正的新麻烦是路上那个吊着绳子的家伙——<b>蹦极</b>。
+        <br><b>这一关有 20 波</b>（比前两关多 5 波，第 20 波是三只首领一起上）。
+      </p>
+
+      <div class="guide-rows">
+        <div class="guide-row">
+          <span class="guide-ico">🎯</span>
+          <div>
+            <b>① 它专挑你的塔贴「靶子」</b>
+            <p>蹦极<b>不走小路、待在屏幕外</b>，一出场就<b>随机挑一座防御塔</b>贴一张靶子。靶子<b>只是一个落点预告</b>：
+              不掉血、不挡路、也不影响塔开火，头上会显示<b>还有几秒落地</b>。</p>
+          </div>
+        </div>
+        <div class="guide-row">
+          <span class="guide-ico">🪤</span>
+          <div>
+            <b>② 5 秒后它从天上俯冲下来把塔偷走</b>
+            <p>倒计时到 0，蹦极会<b>从屏幕上方俯冲下来</b>，<b>整座塔直接消失</b>（不返还金币），
+              然后抓着塔<b>飞回屏幕外</b>。它<b>全程无敌</b>——打它、拦它都没有用，唯一的破解办法是保护伞。</p>
+          </div>
+        </div>
+        <div class="guide-row">
+          <span class="guide-ico">☂️</span>
+          <div>
+            <b>③ 保护伞：唯一的硬解</b>
+            <p>开场就送你<b>一把保护伞</b>（绿色的叶子）。它是<b>无敌固定设施</b>，
+              <b>左 Shift</b> 用钩索端起它、走到任何地方放下（<b>连路面都能放</b>）。
+              只要靶子底下那座塔在它的<b>覆盖半径 96</b> 内，蹦极俯冲到底那一刻就会被<b>弹飞、直接消失</b>，
+              塔保住——<b>对靶子本身没有任何影响</b>。</p>
+          </div>
+        </div>
+        <div class="guide-row">
+          <span class="guide-ico">⬆️</span>
+          <div>
+            <b>④ 开场就有一座升级台</b>
+            <p>这一关<b>开局就送一座 ⬆️ 升级台</b>（不用等清波），用钩索搬到塔上就能<b>免费升一级</b>，
+              还能突破 3 级上限、一路顶到 LV5。</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="start-goal guide-warn">
+        <b>怎么守？</b>把塔摆在<b>两条路交汇的火力区</b>，再把唯一那把保护伞搬到<b>塔最密的地方</b>——
+        伞罩住的塔，蹦极偷不走。伞<b>只有一把</b>，所以每次看到靶子贴上来，就要想清楚
+        <b>是挪伞过去保这座塔，还是干脆放弃它</b>：哪边塔多、哪波蹦极多，就把伞挪过去。
+      </p>
+
+      <div class="start-foot">
+        <span>随时可以按 <kbd>?</kbd> 或用右侧面板的「操作说明」再回来看。</span>
+        <button id="btnGuide3Ok" class="btn primary start-btn">▶ 开始第三关</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">🌻</span>
+        <div>
+          <h1>绿野防线</h1>
+          <p>第一关 · 蜿蜒小径</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="ico">❤️</span><b id="uiLives">5</b><small>生命</small></div>
+        <div class="stat"><span class="ico">🪙</span><b id="uiMoney">154</b><small>金币</small></div>
+        <div class="stat"><span class="ico">🌊</span><b id="uiWave">0/15</b><small>波次</small></div>
+      </div>
+    </header>
+
+    <main class="board">
+      <div class="stage">
+        <canvas id="game" width="800" height="520"></canvas>
+
+        <!-- 升级弹窗：主角升级后随机三选一强化 -->
+        <div id="levelMenu" class="level-menu hidden">
+          <div class="lv-title">主角升级！选择一项强化</div>
+          <div class="lv-options"></div>
+          <div class="lv-hint">鼠标点击选择 · 1 / 2 / 3 快捷键</div>
+        </div>
+
+        <!-- 建造弹窗：主角走到空地按 Z 标记，按 B 弹出，鼠标选择 -->
+        <div id="buildMenu" class="build-menu hidden">
+          <div class="bm-title">选择要建造的塔</div>
+          <div class="build-options"></div>
+          <div class="bm-hint">鼠标点击选择 · 1 / 2 / 3 快捷键 · Esc 取消</div>
+        </div>
+
+        <!-- 新敌人说明：某种怪整个游戏只在第一次出场时弹一张小卡片（跨关卡不重复，不暂停游戏） -->
+        <div id="enemyPopup" class="enemy-popup hidden"></div>
+
+        <div id="toasts" class="toasts"></div>
+        <div id="overlay" class="overlay hidden">
+          <div class="card">
+            <h2 id="ovTitle">胜利！</h2>
+            <p id="ovText"></p>
+            <div id="ovStats" class="ov-stats"></div>
+            <div class="row">
+              <button class="btn primary" data-action="restart">↻ 再玩一次</button>
+              <button id="btnNextLevel" class="btn gold hidden">🪝 带着钩索进入第二关</button>
+            </div>
+            <button id="btnBackMenu" class="btn ghost" data-action="menu">🏠 回到关卡选择</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <section class="block">
+          <h2>主角 <span class="hint-key" id="heroLevel">Lv.1</span></h2>
+          <div class="hero-card">
+            <img class="hero-avatar" src="主角/hero-deepseek.png" alt="主角立绘" />
+            <div class="hero-card-body">
+              <div class="hero-hp">
+                <span class="ico">🛡️</span>
+                <b id="heroHp">60 / 60</b>
+                <small>血量（归零即失败）</small>
+              </div>
+              <div class="bar xp"><i id="heroXp"></i></div>
+            </div>
+          </div>
+          <p id="heroStats" class="hero-stats">伤害 13 · 攻速 2.9/秒 · 射程 320 · 回血 8/秒</p>
+          <div class="hero-keys">
+            <span><b>左键</b> 点身边的塔＝选中 / 空处＝射击</span>
+            <span><b>右键</b> 快速拆除身边的塔</span>
+            <span><b>Z</b> 标记空地</span>
+            <span><b>B</b> 建造</span>
+            <span><b>F</b> 升级</span>
+            <span><b>C</b> 拆除选中的塔</span>
+          </div>
+          <div class="bar cd"><i id="heroCd"></i></div>
+          <p id="heroStatus" class="hero-status">WASD 移动 · 左键点旁边的塔可直接选中 · 左键空处射击 · B 建造</p>
+          <div class="perk-box">
+            <span class="perk-label">已获得的强化</span>
+            <p id="heroPerks" class="perk-list">还没有强化，击杀敌人升级后可以三选一</p>
+          </div>
+        </section>
+
+        <section class="block">
+          <h2>选中的塔 <span class="hint-key">F 升级 · C 拆除</span></h2>
+          <div id="selection" class="selection empty">
+            <p class="muted">走到防御塔旁边按 <b>Z</b> 选中它，就能升级或拆除。</p>
+          </div>
+        </section>
+
+        <section class="block" id="benchBlock">
+          <h2>升级台 <span class="hint-key">仅第二关</span></h2>
+          <p class="bomb-tip">
+            升级台是<b>无敌的固定设施</b>：拆不掉、卖不掉、也不用升级。<br>
+            · <b>每波清完后</b>会在<b>金色虚框的交付点</b>刷一个（上一波没拿走就不会重复刷）<br>
+            · <b>用钩索端起它</b>（和搬塔一样：朝它按 <kbd>左 Shift</kbd>），走到自己的塔旁边再按一次 <kbd>左 Shift</kbd><br>
+            · <b>免费把那座塔升一级</b>，而且能<b>突破 3 级上限</b>，一路升到 <b>LV5</b>（等级圆点会变成 5 个）<br>
+            · 台子用一次就没了，等下一波再刷；身边的塔都满级了就先去升别的塔
+          </p>
+        </section>
+
+        <section class="block" id="hookBlock">
+          <h2>钩索 <span class="hint-key">左 Shift</span></h2>
+          <div class="hook-row">
+            <span class="hook-state">🪝 <b id="hookState">就绪</b></span>
+            <span class="bomb-count" id="hookCdWrap"><em id="hookCd">—</em></span>
+          </div>
+          <p class="bomb-tip">
+            · 没搭到东西 → 朝<b>鼠标方向</b>飞出<b>固定 196 像素</b>（位移途中<b>撞开</b>碰到的敌人、自己不挨撞；可以飞过河）<br>
+            · 链爪本身 → <b>对敌人零效果</b>（不掉血也不推人，只是指示线）<br>
+            · 搭到自己的塔 / 升级台 → <b>端起来</b>（塔走到空地放下；升级台走到塔旁边扣上去升一级）<br>
+            钩索朝<b>鼠标方向</b>甩（主角身体朝向仍由 WASD 决定）。
+          </p>
+        </section>
+
+        <section class="block">
+          <h2>炸弹 <span class="hint-key">X 引爆</span></h2>
+          <div class="bomb-row">
+            <span class="bomb-count">💣 <b id="bombCount">1 / 3</b><em id="bombCd" class="ready">就绪</em></span>
+            <button id="btnBuyBomb" class="btn gold">买一颗 🪙150</button>
+          </div>
+          <p class="bomb-tip">一次性工具：<b>以主角为中心</b>引爆，<b>秒杀范围内血量最高的 5 个敌人</b>（首领也算，优先炸最肉的）。<b>引爆后冷却 20 秒</b>。清掉<b>首领波</b>各奖励一颗（第一/二关第 10、15 波，第三关第 10、15、20 波）。</p>
+        </section>
+
+        <section class="block">
+          <h2>战斗</h2>
+          <div class="wave-info">
+            <div class="wave-line"><span id="uiNextWave">下一波：小兵 ×6</span></div>
+            <div class="bar"><i id="uiBar"></i></div>
+          </div>
+          <button id="btnWave" class="btn primary">▶ 开始第 1 波</button>
+          <div class="row three">
+            <button id="btnPause" class="btn">⏸ 暂停</button>
+            <button id="btnSpeed" class="btn">⏩ x1</button>
+            <button id="btnSound" class="btn">🔊 音效</button>
+          </div>
+          <button id="btnRestart" class="btn ghost" data-action="restart">↻ 重新开始</button>
+          <button id="btnHelp" class="btn ghost">❓ 操作说明</button>
+        </section>
+
+        <section class="block">
+          <h2>塔图鉴 <span class="hint-key">Z → B 建造</span></h2>
+          <div id="shop" class="shop"></div>
+        </section>
+
+        <section class="block tips">
+          <h2>敌人情报</h2>
+          <p>· <b>新敌人会自己报到</b>：某种怪<b>整个游戏只会报到一次</b>——它在本局第一次出场时，画布下方弹一张小卡片说清它的特性（点一下或 6 秒后自动收掉，<b>不暂停游戏</b>）；之后换关卡、重新开局都不会再重复弹（重新打开页面才重置）。</p>
+          <p>· <b>拆塔者</b>🟢：<b>边走边拆</b>，每 <b>1.2 秒</b>对 <b>174 像素内所有防御塔</b>各造成 <b>13 点</b>（第一关）/ <b>23 点</b>（第二关）伤害（画面上有绿圈和连线）。<b>塔挤成一片会被成倍惩罚</b>——分散布防能减少同时被拆的数量，冰塔把它<b>冻住</b>也能直接让它停手。塔被拆记得及时补建，或者用<b>升级台</b>把关键的塔顶到高级。</p>
+          <p>· <b>诱饵</b>🟡：<b>不走小路、也不从出怪点出来</b>——它会从地图任意一边随机冒出来，再直线抄近路冲向基地。血厚、无伤害，但会把 110 像素内的<b>炮塔</b>火力吸到自己身上。</p>
+          <p>· <b>护盾兵</b>：护盾先于血量吃伤害，脱离火力 3.5 秒后自动回充。</p>
+          <p>· <b>战地医师</b>：持续治疗周围友军（一次最多 3 个），必须优先集火。</p>
+          <p>· <b>分裂史莱姆</b>：死亡后分裂成两只小史莱姆继续前进。</p>
+          <p>· <b>重甲兵 / 护盾兵 / 医师 / 拆塔者 / 督军 / 投石者</b>：漏过扣 2 点生命，<b>首领</b>扣 5 点。</p>
+          <p>· <b>督军</b>🩵：移速很高（98），跟在大部队后面，每 2.1 秒把<b>前方最近的两个敌人往前推 64 像素</b>（青圈 + 推进箭头）。它血量不高，优先点掉能让整波慢下来。</p>
+          <p>· <b>投石者</b>🟠：朝<b>主角当前位置</b>扔石头。落点会有<b>非常醒目的橙色预警</b>——粗红圈 + 时钟进度 + 旋转外环 + 四角角标 + 头顶感叹号，还有一道光柱指着落点，<b>1.1 秒</b>后砸下，造成 <b>主角最大生命的 50%</b>（基础 60 血时 30 点，<b>砸中两下就死</b>）。石头<b>只砸主角，完全不伤防御塔</b>——预警一闪就得让开；同屏最多同时存在 3 块、且任意两块之间至少隔 1.5 秒。</p>
+          <p>· <b>屠戮者</b>🔴：走路时一直开着半径 96 的<b>杀戮光环</b>（红圈 + 旋转尖刺），站在里面的主角每秒掉 16 点血；<b>光环对防御塔零伤害</b>。另外它每隔 <b>2 秒</b>会在附近小怪身上凝出一把<b>血剑</b>：先亮 <b>1 秒的红色虚线轨迹</b>（方向当场锁死），然后以 <b>980 像素/秒</b>直刺过去，<b>撞到主角掉主角最大生命的四分之一（60 血时 15 点）</b>，飞出屏幕自然消失——看到虚线就横着让开。它走过来时主角必须让位，「光环中！快离开」会直接提示你。</p>
+          <p>· <b>首领</b>：每 7 秒召唤 2 只疾行者，血厚甲高，靠炮塔拖住它（<b>冰塔冻不住首领</b>，它免疫冰冻）。</p>
+          <p>· ⚠️ <b>三条路</b>：主路从左侧进入，在<b>左上角来回折三趟</b>（三趟竖路只隔 3 格，是全图最高效的杀戮区），然后汇成一条<b>笔直的终点大道</b>通向右侧基地。另外两条一开始是「未通」的灰色土道：<b>右上方的侧路第 4 波开通</b>（从画面右侧横插进来），<b>左下方的地道第 6 波开通</b>（沿最左侧上行）。<b>两条支路都会很早并进主路</b>，之后和主路共用同一段路——所以只要守住折返区和终点大道，三条路一起守住了。</p>
+        </section>
+
+        <section class="block tips">
+          <h2>提示</h2>
+          <p>· <b>主角会升级</b>：击杀敌人获得经验（亲手射杀全额，塔在他附近击杀给 30%）。升级提升<b>伤害 / 攻速 / 射程</b>并回一点血（<b>生命上限固定 60，不会随等级增长</b>，只有「强健体魄」强化能加），每次升级弹出<b>三选一强化</b>。</p>
+          <p>· 主角的箭伤害低但<b>射速快、无视护甲</b>，按住左键可连射，适合补刀漏网的敌人。</p>
+          <p>· <b>怪撞到主角会掉血</b>（主角只有 60 血），同时怪会被弹回去一段——被追时可以边退边打。</p>
+          <p>· 守护目标：<b>基地生命 5 点</b>（地狱难度），漏怪就扣；<b>主角血量归零同样算失败</b>。主角脱离危险 3.5 秒后按 8 点/秒自动回血，<b>每次升级直接回满</b>。</p>
+          <p>· 🔥 <b>地狱难度</b>：敌人血量 <b>第一关 ×1.2 / 第二关 ×1.875 / 第三关 ×2.4</b>（第一关的小怪血量单独调低了 20%）、拆塔者破坏力 <b>×1.3</b>（每下第一关 13 点 / 第二关 23 点 / 第三关 26 点）、开局金币 <b>×0.7</b>、每波准备时间 <b>10 秒</b>；<b>升级台第二关起才有</b>（每波清完刷一个，能把塔顶到 LV5；第三关开场就有一座）。</p>
+          <p>· 防御塔有<b>耐久</b>（箭塔 170 / 炮塔 245 / 冰塔 195），被拆会返还 40% 金币；脱离火力 5 秒后按 14 点/秒自动修复。</p>
+          <p>· 倒计时结束会自动开波；提前开波可拿到等量金币奖励。</p>
+          <p>· 快捷键：<b>空格</b> 暂停 · <b>Esc / 右键空处</b> 取消选中。</p>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

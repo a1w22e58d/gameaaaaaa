@@ -1,0 +1,31 @@
+音效来源与许可
+================
+
+本文件夹的音效来自 Mixkit 免费音效库。
+- 音效总入口（自己找别的）：https://mixkit.co/free-sound-effects/
+- 弓箭 / 箭矢分类：https://mixkit.co/free-sound-effects/arrow/
+- 许可：Mixkit License —— 可免费用在个人或商业项目里，**无需署名**；
+  但**不可转售**，也不能把素材本身当素材库再分发。
+
+arrow-whizz.wav —— 弓箭破空（一记短促的「咻」）
+   原素材：Mixkit「Arrow whizz」（素材 ID 2767）
+   素材直链：https://assets.mixkit.co/active_storage/sfx/2767/2767.wav
+   （规律：assets.mixkit.co/active_storage/sfx/<ID>/<ID>.wav，换个 ID 就能直接抓别的素材）
+   处理：原文件约 1.26 秒、前段是静音，已裁掉前导静音让声音点击即响；
+         成品 121ms（拍点 19ms）、尾部 80ms 淡出、峰值归一化到 -1.4 dBFS，
+         44100Hz / 16bit / 立体声，浏览器可直接播放。
+
+bgm.wav —— 背景音乐（整局循环播放的那首芯片音乐）
+    曲名：Juhani Junkala「Retro Game Music Pack — Level 1」
+    作者：Juhani Junkala（SubspaceAudio）
+    出处：https://opengameart.org/content/5-chiptunes-action
+    作者主页 / 作品集：https://www.youtube.com/watch?v=dbACpSy9FWY
+    许可：**CC0 1.0（公有领域贡献）** —— 作者原话：「You can do anything you want with these tunes.」
+          随便用、可商用、无需署名（这里署名只是为了尊重作者）。
+    处理：原始文件是 74.3 秒 / 44100Hz / 16bit / 立体声的 wav（12.5 MB），
+          这里转成 22050Hz / 16bit / 单声道并峰值归一化到 -1.5 dBFS，
+          成品 3.12 MB；曲子首尾本来就是无缝循环，所以游戏里直接 loop。
+    想换风格：同一套包里还有 Level 2 / Level 3 / Title Screen / Ending 五首，
+          或者去 https://opengameart.org/art-search-advanced?keys=&field_art_type_tid%5B%5D=12&field_art_licenses_tid%5B%5D=4
+          （CC0 音乐筛选）翻别的。
+
